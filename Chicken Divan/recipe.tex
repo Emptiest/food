@@ -1,15 +1,61 @@
+% Compiling using XeLaTeX
 \documentclass{article}
 	\title{\textbf{Chicken Divan}}
 	\author{Fullest}
 	\date{January 25, 2023}
 	
+	% Functional packages
+	\usepackage{todonotes}
+		% \listoftodos
+		% \todo{TODO as a margin block}
+		% \todo[inline]{TODO within the text}
+		% \missingfigure{Description of missing figure}
+	\usepackage{siunitx}
+		\let\DeclareUSUnit\DeclareSIUnit
+		\let\US\SI
+		\DeclareUSUnit\fahrenheit{F}
+		\DeclareUSUnit\cup{cup}
+		\DeclareUSUnit\tbsp{tbsp}
+		\DeclareUSUnit\tsp{tsp}
+
+	% Margins and Geometry
 	\usepackage{multicol}
 	\usepackage[margin=0.5in]{geometry}
 	\addtolength{\topmargin}{-.5in}
+	\usepackage{enumitem}
+	\setlist{nosep}
 	
+	% Bibliography Spacing
+	\newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+	\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+	\let\oldthebibliography\thebibliography
+	\renewcommand\thebibliography[1]{%
+  		\oldthebibliography{#1}%
+  		\setlength{\parskip}{\bibitemsep}%
+  		\setlength{\itemsep}{\bibparskip}%
+	}
+	
+	% Helps avoid orphaned words. To use, do {\microtypecontext{expansion=sloppy}blahblahblah}
+	\usepackage{microtype}
+	\SetExpansion
+	[ context = sloppy,
+	  stretch = 30,
+	  shrink = 60,
+	  step = 5 ]
+	{ encoding = {OT1,T1,TS1} }
+	{ }
+	
+	% Dark Theme
 	\usepackage{xcolor}
 	\pagecolor[rgb]{0,0,0}
 	\color[rgb]{0.75,0.75,0.75}
+	\usepackage[colorlinks = true,
+				linkcolor = cyan,
+				urlcolor = cyan,
+				citecolor = cyan,
+				anchorcolor = cyan]{hyperref}	
+
+	\bibliographystyle{unsrt}
 	
 \begin{document}
 
@@ -18,18 +64,21 @@
 
 \begin{multicols}{2}
 
+% \listoftodos
+
+Updated \today
 \section{Intro}
-Indian flavored broccoli casserole tbh. Delicious, moist, and creamy as hell.\cite{WEBSITEWITHRECIPE:1} I made this recipe because I had a buttload of chicken to get rid of. I also wanted to try using the instant pot for that part of this process.\cite{CHICKEN}
+\cite{WEBSITEWITHRECIPE:1}Indian flavored broccoli casserole tbh. Delicious, moist, and creamy as hell. I made this recipe because I had a buttload of chicken to get rid of. I also wanted to try using the instant pot\cite{CHICKEN} for that part of this process. This recipe is also keto-friendly. I'd like to try this again sometime but with rice instead of broccoli and see how that tastes.
 
 \section{Ingredients List}
 \begin{itemize}
 	\item poached chicken\cite{CHICKEN}
 	\item 2 florets of broccoli
 	\item water
-	\item 1 cup cream cheese
-	\item 1 cup heavy (whipping) cream
-	\item 1 cup sour cream
-	\item 1 tbsp curry powder\cite{CURRYPOWDER}
+	\item \US{1}{\cup} cream cheese
+	\item \US{1}{\cup} heavy (whipping) cream
+	\item \US{1}{\cup} sour cream
+	\item \US{1}{\tbsp} curry powder\cite{CURRYPOWDER}
 	\item 1 cube of chicken bouillon
 \end{itemize}
 
@@ -42,32 +91,35 @@ Indian flavored broccoli casserole tbh. Delicious, moist, and creamy as hell.\ci
 	\item Strainer
 	\item Pot
 	\item Wooden spoon
+	\item (Optional) Spatula\\\\ % Extra spaces to push next section to column
 \end{itemize}
 
 \section{Cooking Method}
 \begin{itemize}
+	\item \verb|Preheat| oven to \US{375}{\fahrenheit}	
 	\item \verb|Add| cream cheese to a mixing bowl
-	\item Let it sit for a half hour to soften
-	\item \verb|Add| in heavy cream and sour cream and \verb|stir| until homogenous
-	\item \verb|Set| this sauce aside
+	\item Let it sit for a half hour until softened
+	\item \verb|Add| in heavy cream and sour cream
+	\item \verb|Stir| until homogenous
+	\item \verb|Add| curry powder\cite{CURRYPOWDER} and bouillon cube
+	\item \verb|Stir| again until well-combined
+	\item \verb|Set| sauce aside
 	\item \verb|Boil| some water in a pot
 	\item \verb|Chop| your broccoli florets
-	\item \verb|Add| broccoli florets to boiling water, \verb|boil| for about 3 minutes
+	\item \verb|Add| broccoli florets to boiling water
+	\item \verb|Boil| for about 3 minutes
 	\item \verb|Strain| the broccoli
-	\item \verb|Chop| or \verb|Shred| some poached chicken
+	\item \verb|Chop| or \verb|Shred| some poached chicken\cite{CHICKEN}
 	\item \verb|Add| the chicken and broccoli to the mixing bowl of sauce
 	\item \verb|Stir| until well-combined
-	\item \verb|Pour| everything into a 9x13 baking tray
+	\item \verb|Pour| everything into an ungreased 9x13 baking tray
 	\item \verb|Bake| for \verb|35 minutes|
 \end{itemize}
 
 \section{Serving Method}
 Use a spatula to lift pieces and serve in bowls or plates
 
-\section{Comments}
-
 \bibliography{ref}
-\bibliographystyle{plain}
 
 \end{multicols}
 \end{document}
