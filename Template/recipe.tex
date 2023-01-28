@@ -1,0 +1,98 @@
+% Compiling using XeLaTeX
+\documentclass{article}
+	\title{\textbf{Food Name}}
+	\author{Fullest}
+	\date{\today}
+	
+	% Functional packages
+	\usepackage{todonotes}
+		% \listoftodos
+		% \todo{TODO as a margin block}
+		% \todo[inline]{TODO within the text}
+		% \missingfigure{Description of missing figure}
+	\usepackage{siunitx}
+		\let\DeclareUSUnit\DeclareSIUnit
+		\let\US\SI
+		\DeclareUSUnit\fahrenheit{F}
+		\DeclareUSUnit\cup{cup}
+		\DeclareUSUnit\cups{cups}
+		\DeclareUSUnit\tbsp{tbsp}
+		\DeclareUSUnit\tsp{tsp}
+		\DeclareUSUnit\florets{florets}
+
+	% Margins and Geometry
+	\usepackage{multicol}
+	\usepackage[margin=0.5in]{geometry}
+	\addtolength{\topmargin}{-.5in}
+	\usepackage{enumitem}
+	\setlist{nosep}
+	\usepackage[all]{nowidow}
+	\hyphenpenalty=5000
+	
+	% Bibliography Spacing
+	\newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+	\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+	\let\oldthebibliography\thebibliography
+	\renewcommand\thebibliography[1]{%
+  		\oldthebibliography{#1}%
+  		\setlength{\parskip}{\bibitemsep}%
+  		\setlength{\itemsep}{\bibparskip}%
+	}
+	
+	% Helps avoid orphaned words. To use, do {\microtypecontext{expansion=sloppy}blahblahblah}
+	\usepackage{microtype}
+	\SetExpansion
+	[ context = sloppy,
+	  stretch = 30,
+	  shrink = 60,
+	  step = 5 ]
+	{ encoding = {OT1,T1,TS1} }
+	{ }
+	
+	% Dark Theme
+	\usepackage{xcolor}
+	\pagecolor[rgb]{0,0,0}
+	\color[rgb]{0.75,0.75,0.75}
+	\usepackage[colorlinks = true,
+				linkcolor = cyan,
+				urlcolor = cyan,
+				citecolor = cyan,
+				anchorcolor = cyan]{hyperref}	
+
+	\bibliographystyle{unsrt}
+	
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{multicols}{2}
+
+% \listoftodos
+
+Updated \today
+\section{Intro}
+blah
+
+\section{Ingredients List}
+\begin{itemize}
+	\item blah
+\end{itemize}
+
+\section{Tools used}
+\begin{itemize}
+	\item blah
+\end{itemize}
+
+\section{Cooking Method}
+\begin{itemize}
+	\item \verb|blah|
+\end{itemize}
+
+\section{Serving Method}
+blah
+
+\bibliography{ref}
+
+\end{multicols}
+\end{document}
