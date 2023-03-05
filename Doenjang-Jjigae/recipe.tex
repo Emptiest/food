@@ -1,0 +1,129 @@
+% Compiling using XeLaTeX
+\documentclass{article}
+	\title{\textbf{Doenjang-Jjigae}}
+	\author{Fullest}
+	\date{February 9, 2023}
+	
+	% Functional packages
+	\usepackage{todonotes}
+		% \listoftodos
+		% \todo{TODO as a margin block}
+		% \todo[inline]{TODO within the text}
+		% \missingfigure{Description of missing figure}
+	\usepackage{siunitx}
+		\let\DeclareUSUnit\DeclareSIUnit
+		\let\US\SI
+		\DeclareUSUnit\fahrenheit{F}
+		\DeclareUSUnit\cup{cup}
+		\DeclareUSUnit\cups{cups}
+		\DeclareUSUnit\tbsp{tbsp}
+		\DeclareUSUnit\tsp{tsp}
+		\DeclareUSUnit\florets{florets}
+
+	% Margins and Geometry
+	\usepackage{multicol}
+	\usepackage[margin=0.5in]{geometry}
+	\addtolength{\topmargin}{-.5in}
+	\usepackage{enumitem}
+	\setlist{nosep}
+	\usepackage[all]{nowidow}
+	\hyphenpenalty=5000
+	
+	% Remove paragraph indentation
+	\setlength{\parindent}{0pt}
+	
+	% Bibliography Spacing
+	\newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
+	\newlength{\bibparskip}\setlength{\bibparskip}{0pt}
+	\let\oldthebibliography\thebibliography
+	\renewcommand\thebibliography[1]{%
+  		\oldthebibliography{#1}%
+  		\setlength{\parskip}{\bibitemsep}%
+  		\setlength{\itemsep}{\bibparskip}%
+	}
+	
+	% Helps avoid orphaned words. To use, do {\microtypecontext{expansion=sloppy}blahblahblah}
+	\usepackage{microtype}
+	\SetExpansion
+	[ context = sloppy,
+	  stretch = 30,
+	  shrink = 60,
+	  step = 5 ]
+	{ encoding = {OT1,T1,TS1} }
+	{ }
+	
+	% Dark Theme
+	\usepackage{xcolor}
+	\pagecolor[rgb]{0,0,0}
+	\color[rgb]{0.75,0.75,0.75}
+	\usepackage[colorlinks = true,
+				linkcolor = cyan,
+				urlcolor = cyan,
+				citecolor = cyan,
+				anchorcolor = cyan]{hyperref}	
+
+	\bibliographystyle{unsrt}
+	
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{multicols}{2}
+
+% \listoftodos
+
+Updated \today
+\section{Intro}
+Serves: 4 people\\
+Cooking time: ~30 minutes\\
+
+I've made donejang-jjigae\cite{MAANGCHI} many times before, but I'm combining it with instant pot\cite{FISHSTOCK} usage this time. This twist on the recipe cuts down roughly 45m-1h of active cooking time (constant stirring, etc.) to ~30 minutes of mostly passive cooking, not including prep.\\
+
+The stew, if re-heated to a simmer daily, should last a few days but probably not longer than a week. I've never let it sit around for more than 4-5 days, so not tested beyond that shelf life. If the stew starts looking dry after preserving it this way for a few days, add a cup of water.
+
+\section{Ingredients List}
+\begin{itemize}
+	\item \US{5}{cups} water
+	\item 10 anchovies
+	\item 2 potatoes
+	\item 2 zucchinis
+	\item 2 onions
+	\item 8 garlic cloves, minced
+	\item 1/2 cup of fermented soybean paste (doenjang)
+	\item 1 package of medium-firm tofu
+\end{itemize}
+
+\section{Tools used}
+\begin{itemize}
+	\item Knife
+	\item Cutting board
+	\item Disposable teabag
+	\item Instant Pot
+	\item Wooden Spoon
+	\item Ladle
+\end{itemize}
+\vfill\null
+\columnbreak
+
+\section{Cooking Method}
+\begin{itemize}
+	\item \verb|Add| Water to Instant Pot
+	\item \verb|Put| Anchovies into a looseleaf teabag - this will be used to fish them out later without creating a mess
+	\item \verb|Chop| Potatoes, Onions, Garlic, and Zucchini
+	\item \verb|Add| Anchovy bag, Potatoes, Onions, Garlic, and Zucchini to Instant Pot
+	\item \verb|Cook| on high pressure for 5 minutes + 5 minute natural release
+	\item \verb|Remove| Anchovy bag from the broth and \verb|Discard|
+	\item \verb|Saute on High| on the Instant Pot and wait for it to simmer
+	\item \verb|Chop| Tofu into bite-sized chunks, approx \SI{1.5}{cm} cubes
+	\item \verb|Add| Tofu to the instant pot
+	\item \verb|Boil| for 3 minutes
+\end{itemize}
+
+\section{Serving Method}
+Serve with rice, according to your preference. My preference is to keep the rice in a separate bowl, but you can also serve with a bowl of this stew and adding rice on top.
+
+\bibliography{ref}
+
+\end{multicols}
+\end{document}
